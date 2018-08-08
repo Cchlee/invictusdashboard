@@ -1,0 +1,41 @@
+.Login {
+    text-align: center;
+}
+
+.Login-logo {
+    height: 80px;
+    width: 40%;
+    object-fit: cover;
+  }
+
+input {
+    width: 35%;
+    font-size: 18px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #313036;
+    width: 200px;
+    border: none;
+    color: white;
+    padding: 10px 16px;
+    text-align: center;
+    font-weight: bold;
+    display: inline-block;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.info{
+    border: 3px solid #313036;
+    background-color: #eaeaeb;
+}
+
+.divider{
+    width:50px;
+    height:auto;
+    display:inline-block;
+}
