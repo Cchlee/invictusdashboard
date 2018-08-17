@@ -8,10 +8,18 @@ import { BrowserRouter, Route, Link } from "react-router-dom";
 
 
 
-//ReactDOM.render(<App />, document.getElementById('root'));
-ReactDOM.render(            
-<BrowserRouter>
-    <Login />             
-</BrowserRouter>
-, document.getElementById('root'));
+if(localStorage.getItem("login")){
+    ReactDOM.render(            
+        <BrowserRouter>
+            <App />             
+        </BrowserRouter>
+        , document.getElementById('root'));
+}
+else{
+    ReactDOM.render(            
+        <BrowserRouter>
+            <Login />             
+        </BrowserRouter>
+        , document.getElementById('root'));
+}
 registerServiceWorker();

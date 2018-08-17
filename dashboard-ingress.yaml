@@ -1,0 +1,8 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: dashboard-ingress
+spec:
+  backend:
+    serviceName: dashboard-web
+    servicePort: 3000

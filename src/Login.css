@@ -8,13 +8,13 @@
     object-fit: cover;
   }
 
-input {
-    width: 35%;
+ input {
+    width: 75%;
     font-size: 18px;
-    padding: 12px 20px;
-    margin: 8px 0;
     box-sizing: border-box;
-}
+    
+ 
+} 
 
 button {
     background-color: #313036;
@@ -38,4 +38,8 @@ button {
     width:50px;
     height:auto;
     display:inline-block;
+}
+
+.failure{
+    color: #D12129
 }

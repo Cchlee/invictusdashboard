@@ -11,14 +11,47 @@ class Login extends React.Component {
         super();
         this.state = {
             redirect: false,
-            hide: false
+            hide: false,
+            username: '',
+            password: '',
+            failure: true
         }
     }
+
     setRedirect() {
-        this.setState({
-            redirect: true,
-            hide: true
+        fetch("http://localhost:8000/login", {
+            method: "POST",
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify({
+                "username": this.state.username,
+                "password": this.state.password
+            })
+        }).then(async (response)=>{
+            let toke = await response.json();
+            console.log(toke)
+            if(toke=="failure"){
+                console.log("didn't work");
+                this.setState({failure:false});
+            }
+            else{
+                localStorage.setItem('login', toke);
+                this.setState({
+                    redirect: true,
+                    failure: true,
+                    hide: true
+                });
+            }
         })
+        .catch(error => console.error(`Fetch Error =\n`, error));
+
+    }
+
+    updateUserSearch(event) {
+        this.setState({ username: event.target.value })
+    }
+
+    updatePassSearch(event) {
+        this.setState({ password: event.target.value })
     }
     renderRedirect() {
         if (this.state.redirect) {
@@ -45,10 +78,19 @@ class Login extends React.Component {
                     </header>
                     <div className="info" hidden={this.state.hide}>
                         <h3>Login</h3>
-                        <input type="text" placeholder="Username"></input>
+                        <input type="text"
+                        value={this.state.username} onChange={this.updateUserSearch.bind(this)}
+                        placeholder="Username"></input>
                         <br />
-                        <input type="password" placeholder="Password"></input>
+                        <input type="password" 
+                        value={this.state.password} onChange={this.updatePassSearch.bind(this)}
+                        placeholder="Password"></input>
                         <br />
+                        <br />
+                        <div className="failure" hidden={this.state.failure} >
+                        <i>Login Failed, please try again</i>
+                        <br />
+                        </div>
                         <br />
                         {this.renderRedirect()}
                         <button onClick={(e) => this.setRedirect()}>SIGN IN </button>
@@ -56,8 +98,7 @@ class Login extends React.Component {
                         <button>REGISTER </button>
                         <br />
                         <br />
-                        <br />
-                        <br />
+
                         <br />
                         <br />
                     </div>

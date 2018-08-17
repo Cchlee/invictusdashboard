@@ -15,9 +15,9 @@ class Token extends React.Component {
 
   render() {
     return (
-      <li onClick={(e) => this.handleClick(this.props.token, e)} >
+      <div onClick={(e) => this.handleClick(this.props.token, e)} >
         {this.props.token.name}
-      </li>
+      </div>
     )
   }
 }
